@@ -7,6 +7,8 @@
 package org.kde.kdeconnect.UserInterface
 
 import android.Manifest
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
@@ -19,6 +21,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -34,12 +37,13 @@ import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver
 import org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsFragment
 import org.kde.kdeconnect.UserInterface.About.AboutFragment
 import org.kde.kdeconnect.UserInterface.About.getApplicationAboutData
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
-import java.util.LinkedList
+
 
 private const val MENU_ENTRY_ADD_DEVICE = 1 //0 means no-selection
 private const val MENU_ENTRY_SETTINGS = 2
@@ -81,10 +85,26 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         }
     }
 
+    /**
+     * 开启通知
+     */
+    private fun toggleNotificationListenerService(context: Context) {
+        val pm: PackageManager = context.getPackageManager()
+        pm.setComponentEnabledSetting(
+            ComponentName(context, NotificationReceiver::class.java),
+            PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP
+        )
+        pm.setComponentEnabledSetting(
+            ComponentName(context, NotificationReceiver::class.java),
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
+        )
+//        Toast.makeText(context, "绑定完成", Toast.LENGTH_SHORT).show();
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DeviceHelper.initializeDeviceId(this)
-
+        toggleNotificationListenerService(this.applicationContext);
         val root = binding.root
         setContentView(root)
         mDrawerLayout = if (root is DrawerLayout) root else null
