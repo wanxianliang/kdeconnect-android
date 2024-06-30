@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">ბუფერი გაგზავნილია</string>
   <string name="pref_plugin_mousepad">დაშორებული შეყვანა</string>
   <string name="pref_plugin_mousepad_desc">გამოიყენეთ თქვენი ტელეფონი ან ტაბლეტი როგორც თაჩპედი და კლავიატურა</string>
-  <string name="pref_plugin_presenter">დაშორებული სლაიდშოუ</string>
   <string name="pref_plugin_presenter_desc">გამოიყენეთ თქვენი მოწყობილობა სლაიდშოუს სამართავად</string>
   <string name="pref_plugin_remotekeyboard">დაშორებული ღილაკების მიღება</string>
   <string name="pref_plugin_mpris">მულტიმედიის მართვა</string>
@@ -130,7 +129,6 @@
     <item>1 წუთი</item>
     <item>2 წუთი</item>
   </string-array>
-  <string name="share_to">გაზიარება…</string>
   <string name="protocol_version_newer">მოწყობილობა პროტოკოლის უფრო ახალ ვერსიას იყენებს</string>
   <string name="plugin_settings_with_name">%s-ის მორგება</string>
   <string name="invalid_device_name">მოწყობილობის არასწორი სახელი</string>
@@ -185,7 +183,6 @@
   <string name="select_ringtone">"ზარის  არჩევა"</string>
   <string name="telephony_pref_blocked_title">დაბლოკილი ნომრები</string>
   <string name="mpris_coverart_description">მიმდინარე მედიის ყდა</string>
-  <string name="device_icon_description">მოწყობილობის ხატულა</string>
   <string name="settings_icon_description">პარამეტრების ხატულა</string>
   <string name="presenter_fullscreen">მთელ ეკრანზე</string>
   <string name="presenter_exit">პრეზენტაციიდან გასვლა</string>

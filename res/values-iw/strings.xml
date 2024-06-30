@@ -18,7 +18,7 @@
   <string name="pref_plugin_clipboard_sent">לוח הגזירים נשלח</string>
   <string name="pref_plugin_mousepad">שליטה מרחוק</string>
   <string name="pref_plugin_mousepad_desc">להשתמש בטלפון או במחשב הלוח כמשטח מגע ומקלדת</string>
-  <string name="pref_plugin_presenter">שלט מצגת</string>
+  <string name="pref_plugin_presenter">מצב מצגת</string>
   <string name="pref_plugin_presenter_desc">שימוש במכשיר שלך כדי לעבור בין שקפים במצגת</string>
   <string name="pref_plugin_remotekeyboard">קבלת לחיצות מרחוק</string>
   <string name="pref_plugin_remotekeyboard_desc">קבלת אירועי מקלדת ממכשיר מרוחק</string>
@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">ישנן כמה מקלדות מרוחקות מחוברות, נא לבחור את המכשיר להגדרה</string>
   <string name="open_mousepad">שליטה מרחוק</string>
   <string name="mousepad_info">החלקת האצבע על המסך תזיז את סמן העכבר. נקישה תלחץ, שימוש ב־2/3 אצבעות לכפתורים הימני והאמצעי. 2 אצבעות משמשות לגלילה. לחיצה ארוכה כדי לגרור ולהשליך. אפשר להפעיל יכולת עכבר גירוסקופי מהעדפות התוסף</string>
+  <string name="mousepad_info_no_gestures">יש להזיז את האצבע על גבי המסך כדי להזיז את זמן העכבר, נגיעה גוררת לחיצת עכבר.</string>
   <string name="mousepad_keyboard_input_not_supported">אין תמיכה בקלט מקלדת במכשיר המצומד</string>
   <string name="mousepad_single_tap_settings_title">הגדרת פעולת נקישה באצבע אחת</string>
   <string name="mousepad_double_tap_settings_title">הגדרת פעולה לנקישת שתי אצבעות</string>
@@ -117,11 +118,11 @@
   <string name="error_canceled_by_user">בוטל על ידי המשתמש</string>
   <string name="error_canceled_by_other_peer">בוטל מהצד השני</string>
   <string name="encryption_info_title">פרטי הצפנה</string>
-  <string name="encryption_info_msg_no_ssl">המכשיר השני לא משתמש בגרסה עדכנית של KDE Connect, ייעשה שימוש בשיטת ההצפנה המיושנת.</string>
   <string name="my_device_fingerprint">טביעת אצבע ב־SHA256 של אישור המכשיר שלך היא:</string>
   <string name="remote_device_fingerprint">טביעת אצבע ב־SHA256 של אישור המכשיר המרוחק היא:</string>
   <string name="pair_requested">התקבלה בקשת צימוד</string>
-  <string name="pairing_request_from">בקשת צימוד מאת %1s</string>
+  <string name="pair_succeeded">הצימוד הצליח</string>
+  <string name="pairing_request_from">בקשת צימוד מאת ‚%1s’</string>
   <plurals name="incoming_file_title">
     <item quantity="one">התקבל קובץ %1$d מהמכשיר %2$s</item>
     <item quantity="two">התקבלו %1$d קבצים מהמכשיר %2$s</item>
@@ -174,6 +175,7 @@
   <string name="received_file_text">נקישה לפתיחת ‚%1s’</string>
   <string name="cannot_create_file">לא ניתן ליצור את הקובץ %s</string>
   <string name="tap_to_answer">נקישה למענה</string>
+  <string name="left_click">שליחת לחיצה ימנית</string>
   <string name="right_click">שליחת לחיצה ימנית</string>
   <string name="middle_click">שליחת לחיצה אמצעית (גלגלת)</string>
   <string name="show_keyboard">הצגת מקלדת</string>
@@ -204,6 +206,8 @@
   <string name="mpris_notification_settings_title">הצגת התראות בקרת מדיה</string>
   <string name="mpris_notification_settings_summary">לאפשר שליטה בנגני המדיה שלך מבלי לפתוח את KDE Connect</string>
   <string name="share_to">שיתוף אל…</string>
+  <string name="unreachable_device">%s (לא נגיש)</string>
+  <string name="unreachable_device_url_share_text">כתובות שותפו להתקן בלתי נגיש והן תועברנה אליו ברגע שישוב להיות נגיש.\n\n</string>
   <string name="protocol_version_newer">המכשיר משתמש בגרסה חדשה יותר</string>
   <string name="plugin_settings_with_name">הגדרות %s</string>
   <string name="invalid_device_name">שם המכשיר שגוי</string>
@@ -280,7 +284,6 @@
   <string name="telephony_pref_blocked_title">מספרים חסומים</string>
   <string name="telephony_pref_blocked_dialog_desc">לא להציג הודעות ושיחות מהמספרים האלה. נא לציין מספר טלפון אחד בכל שורה</string>
   <string name="mpris_coverart_description">עטיפת האלבום של המדיה הנוכחית</string>
-  <string name="device_icon_description">סמל מכשיר</string>
   <string name="settings_icon_description">סמל הגדרות</string>
   <string name="presenter_fullscreen">מסך מלא</string>
   <string name="presenter_exit">יציאה ממצגת</string>
@@ -424,4 +427,8 @@
   <string name="receive_notifications_permission_explanation">יש לאשר התראות כדי לקבל אותן במכשירים אחרים</string>
   <string name="findmyphone_notifications_explanation">הרשאת ההתראות נחוצה כדי שהטלפון יצלצל גם אם היישומון ברקע</string>
   <string name="no_notifications">התראות מושבתות, לא תתקבלנה התראות צימוד נכנסות.</string>
+  <string name="mpris_keepwatching">להמשיך לנגן</string>
+  <string name="mpris_keepwatching_settings_title">להמשיך לנגן</string>
+  <string name="mpris_keepwatching_settings_summary">הצגת התראה שקטה כדי להמשיך לנגן בהתקן הזה לאחר סגירת המדיה</string>
+  <string name="notification_channel_keepwatching">להמשיך לנגן</string>
 </resources>

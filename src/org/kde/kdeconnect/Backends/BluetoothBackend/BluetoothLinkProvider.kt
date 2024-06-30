@@ -22,6 +22,7 @@ import android.util.Log
 import org.apache.commons.io.IOUtils
 import org.kde.kdeconnect.Backends.BaseLinkProvider
 import org.kde.kdeconnect.Device
+import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
@@ -136,6 +137,11 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 return
             } catch (e: SecurityException) {
                 Log.e("KDEConnect", "Security Exception for CONNECT", e)
+
+                val prefenceEditor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+                prefenceEditor.putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, false)
+                prefenceEditor.apply()
+
                 return
             }
             try {
@@ -190,8 +196,8 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                     }
                     val response = sb.toString()
                     val identityPacket = NetworkPacket.unserialize(response)
-                    if (identityPacket.type != NetworkPacket.PACKET_TYPE_IDENTITY) {
-                        Log.e("BTLinkProvider/Server", "2 Expecting an identity packet")
+                    if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+                        Log.w("BTLinkProvider/Server", "Invalid identity packet received.")
                         return
                     }
                     Log.i("BTLinkProvider/Server", "Received identity packet")
@@ -231,21 +237,25 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
 
         override fun run() {
-            Log.i("ClientRunnable", "run called")
-            val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
-            context.registerReceiver(this, filter)
-            Log.i("ClientRunnable", "receiver registered")
-            if (continueProcessing) {
-                Log.i("ClientRunnable", "before connectToDevices")
-                discoverDeviceServices()
-                Log.i("ClientRunnable", "after connectToDevices")
-                try {
-                    Thread.sleep(15000)
-                } catch (ignored: InterruptedException) {
+            try {
+                Log.i("ClientRunnable", "run called")
+                val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
+                context.registerReceiver(this, filter)
+                Log.i("ClientRunnable", "receiver registered")
+                if (continueProcessing) {
+                    Log.i("ClientRunnable", "before connectToDevices")
+                    discoverDeviceServices()
+                    Log.i("ClientRunnable", "after connectToDevices")
+                    try {
+                        Thread.sleep(15000)
+                    } catch (ignored: InterruptedException) {
+                    }
                 }
+                Log.i("ClientRunnable", "unregisteringReceiver")
+                context.unregisterReceiver(this)
+            } catch (se: SecurityException) {
+                Log.w("BluetoothLinkProvider", se)
             }
-            Log.i("ClientRunnable", "unregisteringReceiver")
-            context.unregisterReceiver(this)
         }
 
         /**
@@ -355,11 +365,13 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 Log.i("BTLinkProvider/Client", "Device: " + device.address + " Before unserialize (message: '" + message + "')")
                 val identityPacket = NetworkPacket.unserialize(message)
                 Log.i("BTLinkProvider/Client", "Device: " + device.address + " After unserialize")
-                if (identityPacket.type != NetworkPacket.PACKET_TYPE_IDENTITY) {
-                    Log.e("BTLinkProvider/Client", "1 Expecting an identity packet")
-                    socket.close()
+
+                if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+                    Log.w("BTLinkProvider/Client", "Invalid identity packet received.")
+                    connection.close()
                     return
                 }
+
                 Log.i("BTLinkProvider/Client", "Received identity packet")
                 val myId = DeviceHelper.getDeviceId(context)
                 if (identityPacket.getString("deviceId") == myId) {

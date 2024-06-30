@@ -8,11 +8,17 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="12900"
-    android:versionName="1.29.0">
+    android:versionCode="13101"
+    android:versionName="1.31.1">
 
     <uses-feature
         android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
         android:required="false" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -59,6 +65,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/kde_connect"
+        android:banner="@mipmap/ic_launcher_banner"
         android:supportsRtl="true"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -104,8 +111,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
         <activity
             android:name="org.kde.kdeconnect.UserInterface.MainActivity"
-            android:exported="true"
-            android:theme="@style/KdeConnectTheme.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -114,6 +120,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+            <meta-data android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
@@ -184,7 +196,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
             android:label="@string/open_mpris_controls"
             android:launchMode="singleTop"
-            android:theme="@style/KdeConnectTheme.NoActionBar"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -213,8 +224,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:label="@string/pref_plugin_runcommand"
             android:launchMode="singleTask"
             android:noHistory="true"
-            android:screenOrientation="user"
-            android:theme="@style/Theme.Material3.DayNight.Dialog" />
+            android:screenOrientation="user"/>
 
         <service
             android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.CommandsRemoteViewsService"

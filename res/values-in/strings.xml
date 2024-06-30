@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Papan Klip Terkirim</string>
   <string name="pref_plugin_mousepad">Masukan jarak jauh</string>
   <string name="pref_plugin_mousepad_desc">Gunakan ponsel atau tablet Anda sebagai touchpad dan keyboard</string>
-  <string name="pref_plugin_presenter">Remot salindia</string>
   <string name="pref_plugin_presenter_desc">Gunakan peranti Anda untuk mengubah slide dalam sebuah presentasi</string>
   <string name="pref_plugin_remotekeyboard">Terima penekanan tombol jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa penekanan tombol dari peranti jarak jauh</string>
@@ -109,11 +108,9 @@
   <string name="error_canceled_by_user">Dibatalkan oleh pengguna</string>
   <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>
   <string name="encryption_info_title">Info Enkripsi</string>
-  <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
   <string name="my_device_fingerprint">Sidik jari SHA256 pada sertifikat peranti adalah:</string>
   <string name="remote_device_fingerprint">Sidik jari SHA256 pada sertifikat peranti jarak jauh adalah:</string>
   <string name="pair_requested">Meminta sanding</string>
-  <string name="pairing_request_from">Minta penyandingan dari %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="other">Menerima %1$d file dari %2$s</item>
   </plurals>
@@ -170,7 +167,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
   <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media Anda tanpa membuka KDE Connect</string>
-  <string name="share_to">Berbagi Ke...</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
   <string name="plugin_settings_with_name">Pengesetan %s</string>
   <string name="invalid_device_name">Nama peranti tak absah</string>
@@ -240,7 +236,6 @@
   <string name="telephony_pref_blocked_title">Nomor yang diblokir</string>
   <string name="telephony_pref_blocked_dialog_desc">Jangan tampilkan panggilan dan SMS dari nomor tersebut. Silakan tentukan satu nomor tiap baris</string>
   <string name="mpris_coverart_description">Seni sampul media saat ini</string>
-  <string name="device_icon_description">Ikon perangkat</string>
   <string name="settings_icon_description">Ikon pengaturan</string>
   <string name="presenter_fullscreen">Layar penuh</string>
   <string name="presenter_exit">Keluarkan presentasi</string>

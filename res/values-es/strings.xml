@@ -18,7 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Enviado al portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usar su teléfono o tableta como teclado y teclado táctil</string>
-  <string name="pref_plugin_presenter">Presentación de diapositivas remota</string>
+  <string name="pref_plugin_presenter">Presentación remota</string>
   <string name="pref_plugin_presenter_desc">Use su dispositivo para cambiar las diapositivas de una presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir pulsaciones de teclas remotas</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de pulsación de teclas desde dispositivos remotos</string>
@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Hay más de una conexión remota de teclado, seleccione el dispositivo a configurar</string>
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use 2 dedos para desplazar las pantalla. Use una pulsación larga para arrastrar y soltar. La funcionalidad de la rueda del ratón puede ser activada desde las preferencias del complemento.</string>
+  <string name="mousepad_info_no_gestures">Mueva un dedo sobre la pantalla para mover el cursor del ratón, tóquela pata hacer clic.</string>
   <string name="mousepad_keyboard_input_not_supported">Entrada de teclado no soportada por el dispositivo vinculado.</string>
   <string name="mousepad_single_tap_settings_title">Establecer la acción al pulsar con un dedo</string>
   <string name="mousepad_double_tap_settings_title">Establecer la acción al pulsar con dos dedos</string>
@@ -117,11 +118,11 @@
   <string name="error_canceled_by_user">Cancelado por el usuario</string>
   <string name="error_canceled_by_other_peer">Cancelado por la otra parte</string>
   <string name="encryption_info_title">Información de cifrado</string>
-  <string name="encryption_info_msg_no_ssl">El otro dispositivo no dispone de una versión reciente de KDE Connect, se usará un método de cifrado antiguo.</string>
   <string name="my_device_fingerprint">La huella digital SHA256 del certificado de su dispositivo es:</string>
   <string name="remote_device_fingerprint">La huella digital SHA256 del certificado del dispositivo remoto es:</string>
   <string name="pair_requested">Vinculación solicitada</string>
-  <string name="pairing_request_from">Solicitud de vinculación de %1s</string>
+  <string name="pair_succeeded">Vinculación exitosa</string>
+  <string name="pairing_request_from">Solicitud de vinculación de «%1s»</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recibiendo %1$d archivo desde %2$s</item>
     <item quantity="other">Recibiendo %1$d archivos desde %2$s</item>
@@ -158,6 +159,7 @@
   <string name="received_file_text">Pulse para abrir «%1s»</string>
   <string name="cannot_create_file">No se pudo crear el archivo %s</string>
   <string name="tap_to_answer">Pulse para responder</string>
+  <string name="left_click">Enviar clic izquierdo</string>
   <string name="right_click">Enviar clic derecho</string>
   <string name="middle_click">Enviar clic del botón central</string>
   <string name="show_keyboard">Mostrar teclado</string>
@@ -188,6 +190,8 @@
   <string name="mpris_notification_settings_title">Mostrar notificación del control de medios</string>
   <string name="mpris_notification_settings_summary">Permite controlar sus reproductores de medios sin abrir KDE Connect</string>
   <string name="share_to">Compartir con...</string>
+  <string name="unreachable_device">%s (no accesible)</string>
+  <string name="unreachable_device_url_share_text">Las URLs compartidas con dispositivos no accesibles se entregarán una vez que vuelvan a estar accesibles.\n\n</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
   <string name="plugin_settings_with_name">Preferencias de %s</string>
   <string name="invalid_device_name">Nombre de dispositivo no válido</string>
@@ -264,7 +268,6 @@
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">No mostrar llamadas y SMS de estos números. Por favor, especifique solo un número por línea</string>
   <string name="mpris_coverart_description">Carátula del medio actual</string>
-  <string name="device_icon_description">Icono del dispositivo</string>
   <string name="settings_icon_description">Icono de preferencias</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Salir de la presentación</string>
@@ -408,4 +411,8 @@
   <string name="receive_notifications_permission_explanation">Las notificaciones tienen que estar activadas para recibirlas desde otros dispositivos</string>
   <string name="findmyphone_notifications_explanation">Se necesita el permiso de notificaciones para que el teléfono pueda sonar cuando la aplicación está en segundo plano</string>
   <string name="no_notifications">Las notificaciones están desactivadas, no recibirá notificaciones de vinculación entrantes.</string>
+  <string name="mpris_keepwatching">Continuar reproduciendo</string>
+  <string name="mpris_keepwatching_settings_title">Continuar reproduciendo</string>
+  <string name="mpris_keepwatching_settings_summary">Mostrar una notificación silenciosa para continuar reproduciendo en este dispositivo tras cerrar el reproductor.</string>
+  <string name="notification_channel_keepwatching">Continuar reproduciendo</string>
 </resources>

@@ -18,7 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Enviouse o portapapeis</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Use o teléfono ou tableta como área táctil e teclado.</string>
-  <string name="pref_plugin_presenter">Mando da presentación</string>
+  <string name="pref_plugin_presenter">Mando de presentación</string>
   <string name="pref_plugin_presenter_desc">Use o dispositivo para cambiar de dispositiva nunha presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir teclas premidas remotamente.</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de teclas premidas de dispositivos remotos.</string>
@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Hai máis dunha conexión de teclado remoto, seleccione o dispositivo para configurar.</string>
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Mova un dedo na pantalla para mover o cursor do rato. Toque para facer clic, e use dous ou tres dedos para os botóns secundario e central. Use dous dedos para desprazar. Prema durante un tempo para arrastrar e soltar. A funcionalidade de rato de xiroscopio pode activarse desde a configuración do complemento.</string>
+  <string name="mousepad_info_no_gestures">Mova un dedo na pantalla para mover o cursor, toque para facer clic.</string>
   <string name="mousepad_keyboard_input_not_supported">O dispositivo emparellado non permite entrada de teclado</string>
   <string name="mousepad_single_tap_settings_title">Definir a acción de tocar cun dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir a acción de tocar con dous dedos</string>
@@ -111,17 +112,17 @@
   <string name="pair_new_device">Emparellar cun novo dispositivo</string>
   <string name="cancel_pairing">Cancelar o emparellamento</string>
   <string name="unknown_device">Dispositivo descoñecido</string>
-  <string name="error_not_reachable">Dispositivo fóra do alcance</string>
+  <string name="error_not_reachable">O dispositivo está inaccesíbel.</string>
   <string name="error_already_paired">O dispositivo xa está emparellado.</string>
   <string name="error_timed_out">Esgotouse o tempo límite</string>
   <string name="error_canceled_by_user">Cancelouno a persoa usuaria.</string>
   <string name="error_canceled_by_other_peer">Cancelouse remotamente</string>
   <string name="encryption_info_title">Información do cifrado</string>
-  <string name="encryption_info_msg_no_ssl">O outro dispositivo non usa unha versión recente de KDE Connect, usarase un método obsoleto de cifrado.</string>
   <string name="my_device_fingerprint">A pegada SHA256 do certificado do seu dispositivo é:</string>
   <string name="remote_device_fingerprint">A pegada SHA256 do certificado do dispositivo remoto é:</string>
   <string name="pair_requested">Solicitude de emparellamento</string>
-  <string name="pairing_request_from">Solicitude de emparellamento de %1s.</string>
+  <string name="pair_succeeded">Emparellouse</string>
+  <string name="pairing_request_from">Solicitude de emparellamento de «%1s».</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recibindo %1$d ficheiro de %2$s</item>
     <item quantity="other">Recibindo %1$d ficheiros de %2$s</item>
@@ -158,6 +159,7 @@
   <string name="received_file_text">Toque para abrir «%1s».</string>
   <string name="cannot_create_file">Non é posíbel crear o ficheiro %s</string>
   <string name="tap_to_answer">Toque para contestar</string>
+  <string name="left_click">Enviar un clic esquerdo</string>
   <string name="right_click">Enviar un clic secundario</string>
   <string name="middle_click">Enviar un clic central</string>
   <string name="show_keyboard">Amosar o teclado</string>
@@ -188,6 +190,8 @@
   <string name="mpris_notification_settings_title">Amosar a notificación de control de reprodución.</string>
   <string name="mpris_notification_settings_summary">Permitir controlar os reprodutores sen abrir KDE Connect</string>
   <string name="share_to">Compartir con…</string>
+  <string name="unreachable_device">%s (inaccesíbel)</string>
+  <string name="unreachable_device_url_share_text">Os URL que se compartan cun dispositivo inaccesíbel entregaranse cando o dispositivo estea accesíbel.\n\n</string>
   <string name="protocol_version_newer">Este dispositivo usa unha versión máis nova do protocolo.</string>
   <string name="plugin_settings_with_name">Configuración de %s</string>
   <string name="invalid_device_name">Nome de dispositivo incorrecto</string>
@@ -233,7 +237,7 @@
   <string name="device_rename_title">Renomear o dispositivo</string>
   <string name="device_rename_confirm">Renomear</string>
   <string name="refresh">Actualizar</string>
-  <string name="unreachable_description">Este dispositivo emparellado está fóra do alcance. Asegúrese de que está conectado á mesma rede.</string>
+  <string name="unreachable_description">Este dispositivo emparellado está inaccesíbel. Asegúrese de que está conectado á mesma rede.</string>
   <string name="no_wifi">Non ten conexión a unha rede Wi-Fi así que pode que non vexa ningún dispositivo. Prema aquí para activar a Wi-Fi.</string>
   <string name="on_non_trusted_message">Non é unha rede de confianza: desactivouse o descubrimento automático.</string>
   <string name="no_file_browser">Non hai navegadores de ficheiros instalados.</string>
@@ -264,7 +268,6 @@
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Non amosar chamadas nin SMS destes números. Indique un número por liña.</string>
   <string name="mpris_coverart_description">Portada da obra actual.</string>
-  <string name="device_icon_description">Icona do dispositivo.</string>
   <string name="settings_icon_description">Icona da configuración.</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Saír da presentación</string>
@@ -285,7 +288,7 @@
   <string name="mpris_stop">Deter o reprodutor actual</string>
   <string name="copy_url_to_clipboard">Copiar o URL no portapapeis</string>
   <string name="clipboard_toast">Copiouse no portapapeis</string>
-  <string name="runcommand_notreachable">O dispositivo está fóra de alcance</string>
+  <string name="runcommand_notreachable">O dispositivo está inaccesíbel.</string>
   <string name="runcommand_notpaired">O dispositivo non está emparellado</string>
   <string name="runcommand_nosuchdevice">Non hai tal dispositivo</string>
   <string name="runcommand_noruncommandplugin">O dispositivo non ten o complemento de «Executar unha orde» activado</string>
@@ -408,4 +411,8 @@
   <string name="receive_notifications_permission_explanation">Debe permitir notificacións para recibilas doutros dispositivos.</string>
   <string name="findmyphone_notifications_explanation">Necesita o permiso de notificacións para que o teléfono poda soar cando a aplicación está en segundo plano.</string>
   <string name="no_notifications">As notificacións están desactivadas, non recibirá notificacións entrantes de emparellamento.</string>
+  <string name="mpris_keepwatching">Continuar reproducindo</string>
+  <string name="mpris_keepwatching_settings_title">Continuar reproducindo</string>
+  <string name="mpris_keepwatching_settings_summary">Amosar unha notificación silenciosa para continuar reproducindo neste dispositivo tras pechar o contido multimedia.</string>
+  <string name="notification_channel_keepwatching">Continuar reproducindo</string>
 </resources>

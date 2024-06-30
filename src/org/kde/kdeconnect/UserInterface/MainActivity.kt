@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         // it can trigger a background fetch from the internet that will eventually update the preference
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this)
         val deviceName = DeviceHelper.getDeviceName(this)
-        mNavViewDeviceType?.setImageDrawable(DeviceHelper.getDeviceType(this).getIcon(this))
+        mNavViewDeviceType?.setImageDrawable(DeviceHelper.deviceType.getIcon(this))
         mNavViewDeviceName.text = deviceName
         mNavigationView.setNavigationItemSelectedListener { menuItem: MenuItem ->
             mCurrentMenuEntry = menuItem.itemId
@@ -306,7 +306,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     override fun onStart() {
         super.onStart()
         BackgroundService.Start(applicationContext)
-        KdeConnect.getInstance().addDeviceListChangedCallback(this::class.simpleName) { runOnUiThread { updateDeviceList() } }
+        KdeConnect.getInstance().addDeviceListChangedCallback(this::class.simpleName!!) { runOnUiThread { updateDeviceList() } }
         updateDeviceList()
         onBackPressedDispatcher.addCallback(mainFragmentCallback)
         onBackPressedDispatcher.addCallback(closeDrawerCallback)
@@ -314,7 +314,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     override fun onStop() {
-        KdeConnect.getInstance().removeDeviceListChangedCallback(this::class.simpleName)
+        KdeConnect.getInstance().removeDeviceListChangedCallback(this::class.simpleName!!)
         mainFragmentCallback.remove()
         closeDrawerCallback.remove()
         super.onStop()

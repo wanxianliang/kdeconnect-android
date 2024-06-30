@@ -9,11 +9,12 @@ buildscript {
     }
 }
 
-@Suppress("DSL_SCOPE_VIOLATION")    // TODO: remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dependencyLicenseReport)
+    alias(libs.plugins.compose.compiler)
 }
 
 val licenseResDir = File("$projectDir/build/dependency-license-res")
@@ -47,21 +48,18 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        buildConfig = true
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_9
+        targetCompatibility = JavaVersion.VERSION_1_9
 
         // Flag to enable support for the new language APIs
         isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "9"
     }
 
     androidResources {
@@ -95,12 +93,10 @@ android {
     }
     buildTypes {
         getByName("debug") {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             signingConfig = signingConfigs.getByName("debug")
         }
-        // keep minifyEnabled false above for faster builds; set to 'true'
-        // when testing to make sure ProGuard/R8 is not deleting important stuff
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -109,19 +105,6 @@ android {
     lint {
         abortOnError = false
         checkReleaseBuilds = false
-    }
-
-    testOptions {
-        unitTests.all {
-            it.jvmArgs = it.jvmArgs.orEmpty() + listOf(
-                    "--add-opens=java.base/java.lang=ALL-UNNAMED",
-                    "--add-opens=java.base/java.security=ALL-UNNAMED",
-                    "--add-opens=java.base/sun.security.rsa=ALL-UNNAMED",
-                    "--add-opens=java.base/sun.security.x509=ALL-UNNAMED",
-                    "--add-opens=java.base/java.util=ALL-UNNAMED",
-                    "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"
-            )
-        }
     }
 
     applicationVariants.all {
@@ -137,7 +120,7 @@ android {
                     try {
                         val hash = "git rev-parse --short HEAD".runCommand(workingDir = rootDir)
                         val newName = "${project.name}-${variant.name}-${hash}.apk"
-                        logger.quiet("    Found an output file ${output.outputFile.name}, renaming to ${newName}")
+                        logger.quiet("    Found an output file ${output.outputFile.name}, renaming to $newName")
                         output.outputFileName = newName
                     } catch (ignored: Exception) {
                         logger.warn("Could not make use of the 'git' command-line tool. Output filenames will not be customized.")
@@ -154,7 +137,6 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.accompanist.themeadapter.material3) // TODO: Remove deprecated library https://google.github.io/accompanist/themeadapter-material3/
     implementation(libs.androidx.constraintlayout.compose)
 
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -183,7 +165,7 @@ dependencies {
     implementation(libs.bcpkix.jdk15on) //For SSL certificate generation
 
     implementation(libs.classindex)
-    annotationProcessor(libs.classindex)
+    kapt(libs.classindex)
 
     // The android-smsmms library is the only way I know to handle MMS in Android
     // (Shouldn't a phone OS make phone things easy?)
@@ -206,10 +188,7 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
-    testImplementation(libs.powermock.core)
-    testImplementation(libs.powermock.module.junit4)
-    testImplementation(libs.powermock.api.mockito2)
-    testImplementation(libs.mockito.core) // powermock isn't compatible with mockito 4
+    testImplementation(libs.mockito.core)
     testImplementation(libs.jsonassert)
 
     // For device controls

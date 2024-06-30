@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Zwischenablage versendet</string>
   <string name="pref_plugin_mousepad">Ferneingabe</string>
   <string name="pref_plugin_mousepad_desc">Das Gerät als Touchpad und/oder Tastatur verwenden</string>
-  <string name="pref_plugin_presenter">Fernbedienung für Präsentationen</string>
   <string name="pref_plugin_presenter_desc">Das Gerät zum Wechseln der Folien einer Präsentation verwenden</string>
   <string name="pref_plugin_remotekeyboard">Empfänger für Tastatureingaben</string>
   <string name="pref_plugin_remotekeyboard_desc">Tastatureingaben entfernter Geräte empfangen</string>
@@ -113,11 +112,9 @@
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="encryption_info_title">Verschlüsselungsinformationen</string>
-  <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE Connect. Daher muss eine veraltete Verschlüsselungsmethode verwendet werden</string>
   <string name="my_device_fingerprint">Der SHA256-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
   <string name="remote_device_fingerprint">Der SHA256-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
-  <string name="pairing_request_from">Kopplungsanfrage von %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d Datei von %2$s wird empfangen</item>
     <item quantity="other">%1$d Dateien von %2$s werden empfangen</item>
@@ -182,7 +179,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Benachrichtigung zur Medienkontrolle anzeigen</string>
   <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn KDE Connect nicht geöffnet ist</string>
-  <string name="share_to">Freigeben für ...</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet eine neuere Protokollversion</string>
   <string name="plugin_settings_with_name">%s-Einstellungen</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>
@@ -255,7 +251,6 @@
   <string name="telephony_pref_blocked_title">Unterdrückte Nummern</string>
   <string name="telephony_pref_blocked_dialog_desc">Keine Anrufe und SMS von diesen Telefonnummern anzeigen (Bitte geben Sie eine Nummer pro Zeile ein)</string>
   <string name="mpris_coverart_description">Cover des aktuellen Mediums</string>
-  <string name="device_icon_description">Gerätesymbol</string>
   <string name="settings_icon_description">Einstellungssymbol</string>
   <string name="presenter_fullscreen">Vollbild</string>
   <string name="presenter_exit">Präsentation beenden</string>

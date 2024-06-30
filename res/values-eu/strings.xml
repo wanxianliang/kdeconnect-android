@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Arbelekoa bidali da</string>
   <string name="pref_plugin_mousepad">Urrutiko sarrera</string>
   <string name="pref_plugin_mousepad_desc">Erabili zure telefonoa edo tableta ukimen-sagu eta teklatu gisa</string>
-  <string name="pref_plugin_presenter">Diapositiba emanaldietarako telekomandoa</string>
   <string name="pref_plugin_presenter_desc">Erabili zure gailua aurkezpen bateko diapositibak aldatzeko</string>
   <string name="pref_plugin_remotekeyboard">Jaso urruneko tekla-sakatzeak</string>
   <string name="pref_plugin_remotekeyboard_desc">Jaso tekla-sakatze gertaerak urruneko gailuetatik</string>
@@ -60,6 +59,7 @@
   <string name="mousepad_mouse_buttons_title">Erakutsi saguaren botoiak</string>
   <string name="mousepad_acceleration_profile_settings_title">Ezarri erakuslearen azelerazio</string>
   <string name="mousepad_scroll_direction_title">Alderantzikatu korritzearen norabidea</string>
+  <string name="mousepad_scroll_sensitivity_title">Kiribiltze sentikortasuna</string>
   <string name="gyro_mouse_enabled_title">Gaitu giroskopio-sagua</string>
   <string name="gyro_mouse_sensitivity_title">Giroskopioaren sentikortasuna</string>
   <string-array name="mousepad_tap_entries">
@@ -116,11 +116,9 @@
   <string name="error_canceled_by_user">Erabiltzaileak utzita</string>
   <string name="error_canceled_by_other_peer">Beste kideak utzita</string>
   <string name="encryption_info_title">Zifratze informazioa</string>
-  <string name="encryption_info_msg_no_ssl">Beste gailuak ez du oraintsuko KDE Connect bertsio bat erabiltzen, erabili aurreko bertsioetako metodoa.</string>
   <string name="my_device_fingerprint">Zure gailuaren ziurtagiriaren SHA256 hatz-marka:</string>
   <string name="remote_device_fingerprint">Urruneko gailuaren ziurtagiriaren SHA256 hatz-marka hau da:</string>
   <string name="pair_requested">Parekatzea eskatu da</string>
-  <string name="pairing_request_from">Parekatzeko eskaria %1s-tik</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%2$s(e)tik fitxategi %1$d jasotzen</item>
     <item quantity="other">%2$s(e)tik %1$d fitxategi jasotzen</item>
@@ -186,7 +184,6 @@
   <string name="mpris_notifications_explanation">Urruneko euskarria jakinarazpen tiraderan erakusteko jakinarazpen-baimena behar da</string>
   <string name="mpris_notification_settings_title">Erakutsi euskarri kontrolaren jakinarazpena</string>
   <string name="mpris_notification_settings_summary">Utzi zure euskarri-jotzaileak kontrolatzen KDE Connect ireki gabe</string>
-  <string name="share_to">Partekatu honekin...</string>
   <string name="protocol_version_newer">Gailu honek protokoloaren bertsio berriago bat erabiltzen du</string>
   <string name="plugin_settings_with_name">%s ezarpenak</string>
   <string name="invalid_device_name">Gailuaren izen baliogabea</string>
@@ -263,7 +260,6 @@
   <string name="telephony_pref_blocked_title">Blokeatutako zenbakiak</string>
   <string name="telephony_pref_blocked_dialog_desc">Ez erakutsi zenbaki hauen deiak eta SMSak. Zehaztu zenbaki bat lerroko</string>
   <string name="mpris_coverart_description">Uneko euskarriaren azaleko irudia</string>
-  <string name="device_icon_description">Gailuaren ikonoa</string>
   <string name="settings_icon_description">Ezarpenen ikonoa</string>
   <string name="presenter_fullscreen">Pantaila-betea</string>
   <string name="presenter_exit">Irten aurkezpenetik</string>

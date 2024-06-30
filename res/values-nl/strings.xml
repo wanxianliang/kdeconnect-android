@@ -18,7 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Klembord verzonden</string>
   <string name="pref_plugin_mousepad">Invoer op afstand</string>
   <string name="pref_plugin_mousepad_desc">Uw telefoon of tablet gebruiken als een touchpad en toetsenbord</string>
-  <string name="pref_plugin_presenter">Diavoorstelling op afstand</string>
+  <string name="pref_plugin_presenter">Presentatie op afstand</string>
   <string name="pref_plugin_presenter_desc">Uw apparaat gebruiken om dia\'s te wisselen in een presentatie</string>
   <string name="pref_plugin_remotekeyboard">Toetsaanslagen van afstand ontvangen</string>
   <string name="pref_plugin_remotekeyboard_desc">Toetsaanslaggebeurtenissen ontvangen van externe apparaten</string>
@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Er is meer dan een verbinding met een toetsenbord op afstand, selecteer het te configureren apparaat</string>
   <string name="open_mousepad">Invoer op afstand</string>
   <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Twee vingers gebruiken voor schuiven. Druk lang voor slepen en loslaten. Functionaliteit van gyro-muis kan ingeschakeld worden vanuit voorkeuren in plug-in</string>
+  <string name="mousepad_info_no_gestures">Veeg met een vinger op het scherm om de muiscursor te verplaatsen, tik om te klikken</string>
   <string name="mousepad_keyboard_input_not_supported">Toetsenbordinvoer wordt niet ondersteund door het gepaarde apparaat</string>
   <string name="mousepad_single_tap_settings_title">Tikactie met één vinger instellen</string>
   <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
@@ -117,11 +118,11 @@
   <string name="error_canceled_by_user">Geannuleerd door gebruiker</string>
   <string name="error_canceled_by_other_peer">Geannuleerd door andere kant</string>
   <string name="encryption_info_title">Versleutelde informatie</string>
-  <string name="encryption_info_msg_no_ssl">Het andere apparaat gebruikt geen recente versie van KDE Connect, de verouderde versleutelingsmethode zal worden gebruikt.</string>
   <string name="my_device_fingerprint">De SHA256 vingerafdruk van het certificaat van uw apparaat is:</string>
   <string name="remote_device_fingerprint">De SHA256 vingerafdruk van het certificaat van het apparaat op afstand is:</string>
   <string name="pair_requested">Paarvorming gevraagd</string>
-  <string name="pairing_request_from">Verzoek om een paar te maken van %1s</string>
+  <string name="pair_succeeded">Paarvorming is gelukt</string>
+  <string name="pairing_request_from">Verzoek om een paar te maken van \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d bestand wordt ontvangen vanaf %2$s</item>
     <item quantity="other">%1$d bestanden worden ontvangen vanaf %2$s</item>
@@ -158,6 +159,7 @@
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="cannot_create_file">Kan bestand %s niet aanmaken</string>
   <string name="tap_to_answer">Tap om te antwoorden</string>
+  <string name="left_click">Linker muisklik verzenden</string>
   <string name="right_click">Verstuur een rechter muisklik</string>
   <string name="middle_click">Verstuur een middelste muisklik</string>
   <string name="show_keyboard">Toetsenbord tonen</string>
@@ -187,7 +189,9 @@
   <string name="mpris_notifications_explanation">Het recht op meldingen is nodig om media op afstand te tonen in de meldingenschuiflade</string>
   <string name="mpris_notification_settings_title">Mediabesturingsmelding tonen</string>
   <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen</string>
-  <string name="share_to">Delen met...</string>
+  <string name="share_to">Delen met…</string>
+  <string name="unreachable_device">%s (niet bereikbaar)</string>
+  <string name="unreachable_device_url_share_text">URL\'s gedeeld met een niet bereikbaar apparaat zullen er afgeleverd worden wanneer deze bereikbaar wordt.\n\n</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
   <string name="plugin_settings_with_name">Instellingen van %s</string>
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>
@@ -264,7 +268,6 @@
   <string name="telephony_pref_blocked_title">Geblokkeerde nummers</string>
   <string name="telephony_pref_blocked_dialog_desc">Geen oproepen en SMSen vanaf deze nummers tonen. Specificeer één nummer per regel</string>
   <string name="mpris_coverart_description">Cover-illustratie van huidige media</string>
-  <string name="device_icon_description">Apparaatpictogram</string>
   <string name="settings_icon_description">Pictogram voor instellingen</string>
   <string name="presenter_fullscreen">Volledig scherm</string>
   <string name="presenter_exit">Presentatie beëindigen</string>
@@ -408,4 +411,8 @@
   <string name="receive_notifications_permission_explanation">Meldingen moeten toegestaan worden om ze te ontvangen van andere apparaten</string>
   <string name="findmyphone_notifications_explanation">Het recht op meldingen is nodig zodat de telefoon af kan gaan wanneer de toepassing in de achtergrond is</string>
   <string name="no_notifications">Meldingen zijn uitgeschakeld, u zult inkomende paringmeldingen ontvangen.</string>
+  <string name="mpris_keepwatching">Doorgaan met afspelen</string>
+  <string name="mpris_keepwatching_settings_title">Doorgaan met afspelen</string>
+  <string name="mpris_keepwatching_settings_summary">Een stille melding tonen om door te gaan met afspelen op dit apparaat na sluiten van het medium</string>
+  <string name="notification_channel_keepwatching">Doorgaan met afspelen</string>
 </resources>

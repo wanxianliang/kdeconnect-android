@@ -31,7 +31,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_clipboard_sent">Clipboard Sent</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
-    <string name="pref_plugin_presenter">Slideshow remote</string>
+    <string name="pref_plugin_presenter">Presentation remote</string>
     <string name="pref_plugin_presenter_desc">Use your device to change slides in a presentation</string>
     <string name="pref_plugin_remotekeyboard">Receive remote keypresses</string>
     <string name="pref_plugin_remotekeyboard_desc">Receive keypress events from remote devices</string>
@@ -66,6 +66,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="remotekeyboard_multiple_connections" translatable="true">There is more than one remote keyboard connection, select the device to configure</string>
     <string name="open_mousepad">Remote input</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop. Gyro mouse functionality can be enabled from plugin preferences</string>
+    <string name="mousepad_info_no_gestures">Move a finger on the screen to move the mouse cursor, tap for a click.</string>
     <string name="mousepad_keyboard_input_not_supported">Keyboard input not supported by the paired device</string>
     <string name="mousepad_single_tap_settings_title">Set one finger tap action</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
@@ -177,12 +178,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="error_canceled_by_user">Canceled by user</string>
     <string name="error_canceled_by_other_peer">Canceled by other peer</string>
     <string name="encryption_info_title">Encryption Info</string>
-    <string name="encryption_info_msg_no_ssl">The other device doesn\'t use a recent version of KDE Connect, using the legacy encryption method.</string>
     <string name="my_device_fingerprint">SHA256 fingerprint of your device certificate is:</string>
     <string name="remote_device_fingerprint">SHA256 fingerprint of remote device certificate is:</string>
     <string name="pair_requested">Pair requested</string>
-    <string name="pairing_request_from">Pairing request from %1s</string>
-    <string name="pairing_verification_code" translatable="false">🔑%1s...</string>
+    <string name="pair_succeeded">Pair succeeded</string>
+    <string name="pairing_verification_code" translatable="false">🔑 %1s</string>
+    <string name="pairing_request_from">Pairing request from \'%1s\'</string>
     <plurals name="incoming_file_title">Receiving file from %1s>
         <item quantity="one">Receiving %1$d file from %2$s</item>
         <item quantity="other">Receiving %1$d files from %2$s</item>
@@ -219,6 +220,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="received_file_text">Tap to open \'%1s\'</string>
     <string name="cannot_create_file">Cannot create file %s</string>
     <string name="tap_to_answer">Tap to answer</string>
+    <string name="left_click">Send Left Click</string>
     <string name="right_click">Send Right Click</string>
     <string name="middle_click">Send Middle Click</string>
     <string name="show_keyboard">Show Keyboard</string>
@@ -258,7 +260,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="mpris_notification_settings_title">Show media control notification</string>
     <string name="mpris_notification_settings_summary">Allow controlling your media players without opening KDE Connect</string>
     <string name="mpris_notification_key" translatable="false">mpris_notification_enabled</string>
-    <string name="share_to">Share To…</string>
+    <string name="share_to">Share to…</string>
+    <string name="unreachable_device">%s (Unreachable)</string>
+    <string name="unreachable_device_url_share_text">URLs shared to an unreachable device will be delivered to it once it becomes reachable.\n\n</string>
     <string name="protocol_version_newer">This device uses a newer protocol version</string>
     <string name="plugin_settings_with_name">%s settings</string>
     <string name="invalid_device_name">Invalid device name</string>
@@ -345,7 +349,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="telephony_pref_blocked_title">Blocked numbers</string>
     <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>
     <string name="mpris_coverart_description">Cover art of current media</string>
-    <string name="device_icon_description">Device icon</string>
     <string name="settings_icon_description">Settings icon</string>
 
     <string name="presenter_fullscreen">Fullscreen</string>
@@ -564,5 +567,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="receive_notifications_permission_explanation">Notifications need to be allowed to receive them from other devices</string>
     <string name="findmyphone_notifications_explanation">The notifications permission is needed so the phone can ring when the app is in the background</string>
     <string name="no_notifications">Notifications are disabled, you won\'t receive incoming pair notifications.</string>
+
+
+    <string name="mpris_keepwatching">Continue playing</string>
+    <string name="mpris_keepwatching_key" translatable="false">mpris_keepwatching_enabled</string>
+    <string name="mpris_keepwatching_settings_title">Continue playing</string>
+    <string name="mpris_keepwatching_settings_summary">Show a silent notification to continue playing on this device after closing media</string>
+    <string name="notification_channel_keepwatching">Continue playing</string>
 
 </resources>

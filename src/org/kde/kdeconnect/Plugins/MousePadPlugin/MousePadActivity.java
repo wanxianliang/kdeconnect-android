@@ -48,8 +48,7 @@ public class MousePadActivity
 
     private float mPrevX;
     private float mPrevY;
-    private float mCurrentX;
-    private float mCurrentY;
+    boolean dragging = false;
     private float mCurrentSensitivity;
     private float displayDpiMultiplier;
     private int scrollDirection = 1;
@@ -299,8 +298,8 @@ public class MousePadActivity
                 mPrevY = event.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                mCurrentX = event.getX();
-                mCurrentY = event.getY();
+                float mCurrentX = event.getX();
+                float mCurrentY = event.getY();
 
                 MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
                 if (plugin == null) {
@@ -384,6 +383,7 @@ public class MousePadActivity
             return;
         }
         plugin.sendSingleHold();
+        dragging = true;
     }
 
     @Override
@@ -470,7 +470,12 @@ public class MousePadActivity
             finish();
             return;
         }
-        plugin.sendLeftClick();
+        if (dragging) {
+            plugin.sendSingleRelease();
+            dragging = false;
+        } else {
+            plugin.sendLeftClick();
+        }
     }
 
     private void sendMiddleClick() {

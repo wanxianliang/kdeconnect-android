@@ -30,6 +30,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 
+import androidx.annotation.WorkerThread;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
@@ -41,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.Helpers.SMSHelper;
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -49,12 +51,14 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import kotlin.sequences.Sequence;
 
 @PluginFactory.LoadablePlugin
 @SuppressLint("InlinedApi")
@@ -218,6 +222,13 @@ public class SMSPlugin extends Plugin {
     // thread, make sure that access is coherent
     private final Lock mostRecentTimestampLock = new ReentrantLock();
 
+    /**
+     * Keep track of whether we have received any packet which requested messages.
+     *
+     * If not, we will not send updates, since probably the user doesn't care.
+     */
+    private boolean haveMessagesBeenRequested = false;
+
     private class MessageContentObserver extends ContentObserver {
 
         /**
@@ -262,16 +273,18 @@ public class SMSPlugin extends Plugin {
 
     /**
      * Helper method to read the latest message from the sms-mms database and sends it to the desktop
+     *
+     * Should only be called after initializing the mostRecentTimestamp
      */
     private void sendLatestMessage() {
         // Lock so no one uses the mostRecentTimestamp between the moment we read it and the
         // moment we update it. This is because reading the Messages DB can take long.
         mostRecentTimestampLock.lock();
 
-        if (mostRecentTimestamp == 0) {
-            // Since the timestamp has not been initialized, we know that nobody else
-            // has requested a message. That being the case, there is most likely
-            // nobody listening for message updates, so just drop them
+        if (!haveMessagesBeenRequested) {
+            // Since the user has not requested a message, there is most likely nobody listening
+            // for message updates, so just drop them rather than spending battery/time sending
+            // updates that don't matter.
             mostRecentTimestampLock.unlock();
             return;
         }
@@ -289,7 +302,7 @@ public class SMSPlugin extends Plugin {
         mostRecentTimestampLock.unlock();
 
         // Send the alert about the update
-        device.sendPacket(constructBulkMessagePacket(messages));
+        getDevice().sendPacket(constructBulkMessagePacket(messages));
     }
 
     /**
@@ -346,7 +359,7 @@ public class SMSPlugin extends Plugin {
         }
 
 
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     @Override
@@ -371,6 +384,10 @@ public class SMSPlugin extends Plugin {
         // To see debug messages for Klinker library, uncomment the below line
         //Log.setDebug(true);
 
+        mostRecentTimestampLock.lock();
+        mostRecentTimestamp = SMSHelper.getNewestMessageTimestamp(context);
+        mostRecentTimestampLock.unlock();
+
         return true;
     }
 
@@ -390,19 +407,25 @@ public class SMSPlugin extends Plugin {
 
         switch (np.getType()) {
             case PACKET_TYPE_SMS_REQUEST_CONVERSATIONS:
-                return this.handleRequestAllConversations(np);
+                Runnable handleRequestAllConversationsRunnable = () -> this.handleRequestAllConversations(np);
+                ThreadHelper.execute(handleRequestAllConversationsRunnable);
+                return true;
+
             case PACKET_TYPE_SMS_REQUEST_CONVERSATION:
-                return this.handleRequestSingleConversation(np);
+                Runnable handleRequestSingleConversationRunnable = () -> this.handleRequestSingleConversation(np);
+                ThreadHelper.execute(handleRequestSingleConversationRunnable);
+                return true;
+
             case PACKET_TYPE_SMS_REQUEST:
                 String textMessage = np.getString("messageBody");
                 subID = np.getLong("subID", -1);
 
-                List<SMSHelper.Address> addressList = SMSHelper.jsonArrayToAddressList(np.getJSONArray("addresses"));
+                List<SMSHelper.Address> addressList = SMSHelper.jsonArrayToAddressList(context, np.getJSONArray("addresses"));
                 if (addressList == null) {
                     // If the List of Address is null, then the SMS_REQUEST packet is
                     // most probably from the older version of the desktop app.
                     addressList = new ArrayList<>();
-                    addressList.add(new SMSHelper.Address(np.getString("phoneNumber")));
+                    addressList.add(new SMSHelper.Address(context, np.getString("phoneNumber")));
                 }
                 List<SMSHelper.Attachment> attachedFiles = SMSHelper.jsonArrayToAttachmentsList(np.getJSONArray("attachments"));
 
@@ -444,7 +467,7 @@ public class SMSPlugin extends Plugin {
                 );
 
                 if (networkPacket != null) {
-                    device.sendPacket(networkPacket);
+                    getDevice().sendPacket(networkPacket);
                 }
                 break;
         }
@@ -484,25 +507,23 @@ public class SMSPlugin extends Plugin {
      * <p>
      * Send one packet of type PACKET_TYPE_SMS_MESSAGE with the first message in all conversations
      */
+    @WorkerThread
     private boolean handleRequestAllConversations(NetworkPacket packet) {
-        Iterable<SMSHelper.Message> conversations = SMSHelper.getConversations(this.context);
+        haveMessagesBeenRequested = true;
+        Iterator<SMSHelper.Message> conversations = SMSHelper.getConversations(this.context).iterator();
 
-        // Prepare the mostRecentTimestamp counter based on these messages, since they are the most
-        // recent in every conversation
-        mostRecentTimestampLock.lock();
-        for (SMSHelper.Message message : conversations) {
-            if (message.date > mostRecentTimestamp) {
-                mostRecentTimestamp = message.date;
-            }
+        while (conversations.hasNext()) {
+            SMSHelper.Message message = conversations.next();
             NetworkPacket partialReply = constructBulkMessagePacket(Collections.singleton(message));
-            device.sendPacket(partialReply);
+            getDevice().sendPacket(partialReply);
         }
-        mostRecentTimestampLock.unlock();
 
         return true;
     }
 
+    @WorkerThread
     private boolean handleRequestSingleConversation(NetworkPacket packet) {
+        haveMessagesBeenRequested = true;
         SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getLong("threadID"));
 
         long rangeStartTimestamp = packet.getLong("rangeStartTimestamp", -1);
@@ -519,20 +540,9 @@ public class SMSPlugin extends Plugin {
             conversation = SMSHelper.getMessagesInRange(this.context, threadID, rangeStartTimestamp, numberToGet, true);
         }
 
-        // Sometimes when desktop app is kept open while android app is restarted for any reason
-        // mostRecentTimeStamp must be updated in that scenario too if a user request for a
-        // single conversation and not the entire conversation list
-        mostRecentTimestampLock.lock();
-        for (SMSHelper.Message message : conversation) {
-            if (message.date > mostRecentTimestamp) {
-                mostRecentTimestamp = message.date;
-            }
-        }
-        mostRecentTimestampLock.unlock();
-
         NetworkPacket reply = constructBulkMessagePacket(conversation);
 
-        device.sendPacket(reply);
+        getDevice().sendPacket(reply);
 
         return true;
     }
